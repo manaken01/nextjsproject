@@ -1,21 +1,20 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import {
   Box,
   Container,
   Typography,
   Card,
-  CardContent,
   Button,
   Divider,
   Alert,
 } from "@mui/material";
 import { useRouter, useParams } from "next/navigation";
-import { IUser } from "@/app/types/user.types";
-import { fetchUserById } from "@/app/services/userService";
-import LoadingState from "@/app/components/LoadingState";
+import { IUser } from "@/app/types/user/userTypes";
+import { getUserById } from "@/app/services/user/user";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { LoadingState } from "@/app/components/LoadingState";
 
 export default function UserDetailPage() {
   const router = useRouter();
@@ -31,7 +30,7 @@ export default function UserDetailPage() {
       try {
         setLoading(true);
         setError(null);
-        const data = await fetchUserById(userId);
+        const data = await getUserById(userId);
         setUser(data);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Error al cargar el usuario");

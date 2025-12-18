@@ -1,9 +1,8 @@
 "use client";
 
-import React from "react";
 import { Box, CircularProgress, Typography } from "@mui/material";
 
-const LoadingState: React.FC = () => {
+export const LoadingState = () => {
   return (
     <Box
       sx={{
@@ -23,4 +22,3 @@ const LoadingState: React.FC = () => {
   );
 };
 
-export default LoadingState;

@@ -1,10 +1,9 @@
 "use client";
 
-import React from "react";
 import { AppBar, Toolbar, Typography, Container } from "@mui/material";
 import PeopleIcon from "@mui/icons-material/People";
 
-const NavBar: React.FC = () => {
+export const NavBar = () => {
   return (
     <AppBar position="static" sx={{ mb: 4 }}>
       <Container maxWidth="lg">

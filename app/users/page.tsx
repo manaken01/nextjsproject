@@ -1,20 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
-import {
-  Box,
-  Container,
-  Typography,
-  Alert,
-  AlertTitle,
-} from "@mui/material";
-import { IUser } from "../types/user.types"; 
-import { fetchUsers } from "../services/userService"; 
-import NavBar from "../components/NavBar"; 
-import SearchField from "../components/SearchField"; 
-import LoadingState from "../components/LoadingState"; 
-import UserCard from "../components/UserCard"; 
-
+import { useEffect, useState } from "react";
+import { Box, Container, Typography, Alert, AlertTitle } from "@mui/material";
+import { IUser } from "../types/user/userTypes";
+import { getUsers } from "../services/user/user";
+import NavBar from "../components/NavBar";
+import { SearchField } from "../components/SearchField";
+import { LoadingState } from "../components/LoadingState";
+import { UserCard } from "../components/UserCard";
 
 export default function UsersPage() {
   const [users, setUsers] = useState<IUser[]>([]);
@@ -25,8 +18,6 @@ export default function UsersPage() {
   const handleSearchValueChange = (value: string) => {
     setSearchValue(value);
   };
-
-  // Filtrar usuarios por nombre
   const filteredUsers = users.filter((user) =>
     user.name.toLowerCase().includes(searchValue.toLowerCase())
   );
@@ -36,7 +27,7 @@ export default function UsersPage() {
       try {
         setLoading(true);
         setError(null);
-        const data = await fetchUsers();
+        const data = await getUsers();
         setUsers(data);
       } catch (err) {
         setError(
@@ -75,11 +66,8 @@ export default function UsersPage() {
             searchValue={searchValue}
             onSearchValueChange={handleSearchValueChange}
           />
-
-          {/* Estado de carga */}
           {loading && <LoadingState />}
 
-          {/* Estado de error */}
           {error && !loading && (
             <Alert severity="error" sx={{ borderRadius: "12px" }}>
               <AlertTitle>Error</AlertTitle>
@@ -87,7 +75,6 @@ export default function UsersPage() {
             </Alert>
           )}
 
-          {/* Sin resultados */}
           {!loading && !error && filteredUsers.length === 0 && (
             <Alert severity="info" sx={{ borderRadius: "12px" }}>
               <AlertTitle>Sin resultados</AlertTitle>
@@ -95,7 +82,6 @@ export default function UsersPage() {
             </Alert>
           )}
 
-          {/* Lista de usuarios */}
           {!loading && !error && filteredUsers.length > 0 && (
             <Box sx={{ mt: 3 }}>
               <Typography variant="h6" sx={{ mb: 2 }}>

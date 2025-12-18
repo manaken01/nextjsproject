@@ -1,8 +1,8 @@
-import { IUser } from "../types/user.types";
+import { IUser } from "../../types/user/userTypes";
 
 const API_URL = "https://jsonplaceholder.typicode.com/users";
 
-export const fetchUsers = async (): Promise<IUser[]> => {
+export const getUsers = async (): Promise<IUser[]> => {
   const response = await fetch(API_URL, {
     cache: "no-store",
   });
@@ -14,7 +14,7 @@ export const fetchUsers = async (): Promise<IUser[]> => {
   return response.json();
 };
 
-export const fetchUserById = async (id: string): Promise<IUser> => {
+export const getUserById = async (id: string): Promise<IUser> => {
   const response = await fetch(`${API_URL}/${id}`, {
     cache: "no-store",
   });

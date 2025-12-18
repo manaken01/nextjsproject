@@ -1,18 +1,17 @@
 "use client";
 
-import React from "react";
 import { TextField, Box } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search"
+import SearchIcon from "@mui/icons-material/Search";
 
 interface ISearchFieldProps {
   searchValue: string;
   onSearchValueChange: (value: string) => void;
 }
 
-const SearchField: React.FC<ISearchFieldProps> = ({
+export const SearchField = ({
   searchValue,
   onSearchValueChange,
-}) => {
+}: ISearchFieldProps) => {
   return (
     <Box sx={{ width: "100%", mb: 3, mt: 2 }}>
       <TextField
@@ -33,5 +32,3 @@ const SearchField: React.FC<ISearchFieldProps> = ({
     </Box>
   );
 };
-
-export default SearchField;

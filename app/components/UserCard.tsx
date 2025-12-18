@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import {
   Card,
   CardContent,
@@ -9,21 +8,21 @@ import {
   Box,
   Chip,
 } from "@mui/material";
-import { IUser } from "../types/user.types";
+import { IUser } from "../types/user/userTypes";
 import { useRouter } from "next/navigation";
 import PersonIcon from "@mui/icons-material/Person";
 import EmailIcon from "@mui/icons-material/Email";
 import LocationCityIcon from "@mui/icons-material/LocationCity";
 
 interface IUserCardProps {
-  user: IUser;
+  user?: IUser;
 }
 
-const UserCard: React.FC<IUserCardProps> = ({ user }) => {
+export const UserCard = ({ user }: IUserCardProps) => {
   const router = useRouter();
 
   const handleViewDetails = () => {
-    router.push(`/users/${user.id}`);
+    router.push(`/users/${user?.id}`);
   };
 
   return (
@@ -50,23 +49,23 @@ const UserCard: React.FC<IUserCardProps> = ({ user }) => {
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
             <PersonIcon color="primary" />
             <Typography variant="h6" component="div">
-              {user.name}
+              {user?.name}
             </Typography>
           </Box>
-          <Chip label={`@${user.username}`} size="small" color="primary" />
+          <Chip label={`@${user?.username}`} size="small" color="primary" />
         </Box>
 
         <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 1 }}>
           <EmailIcon fontSize="small" color="action" />
           <Typography variant="body2" color="text.secondary">
-            {user.email}
+            {user?.email}
           </Typography>
         </Box>
 
         <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
           <LocationCityIcon fontSize="small" color="action" />
           <Typography variant="body2" color="text.secondary">
-            {user.address.city}
+            {user?.address.city}
           </Typography>
         </Box>
 
@@ -85,5 +84,3 @@ const UserCard: React.FC<IUserCardProps> = ({ user }) => {
     </Card>
   );
 };
-
-export default UserCard;
