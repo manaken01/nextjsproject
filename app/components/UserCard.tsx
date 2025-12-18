@@ -48,7 +48,7 @@ export const UserCard = ({ user }: IUserCardProps) => {
         >
           <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
             <PersonIcon color="primary" />
-            <Typography variant="h6" component="div">
+            <Typography variant="h6">
               {user?.name}
             </Typography>
           </Box>
