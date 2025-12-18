@@ -1,6 +1,6 @@
-import { fetchUsers, fetchUserById } from '../../services/user/user'
+import { getUsers, getUserById } from '../../services/user/user'
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-// Mock de fetch global
+
 global.fetch = vi.fn()
 
 describe('API Service', () => {
@@ -38,7 +38,7 @@ describe('API Service', () => {
         json: async () => mockUsers,
       })
 
-      const users = await fetchUsers()
+      const users = await getUsers()
 
       expect(global.fetch).toHaveBeenCalledWith(
         'https://jsonplaceholder.typicode.com/users',
@@ -54,7 +54,7 @@ describe('API Service', () => {
         ok: false,
       })
 
-      await expect(fetchUsers()).rejects.toThrow('Error al cargar usuarios')
+      await expect(getUsers()).rejects.toThrow('Error al cargar usuarios')
     })
   })
 
@@ -86,7 +86,7 @@ describe('API Service', () => {
         json: async () => mockUser,
       })
 
-      const user = await fetchUserById('1')
+      const user = await getUserById('1')
 
       expect(global.fetch).toHaveBeenCalledWith(
         'https://jsonplaceholder.typicode.com/users/1',
@@ -101,7 +101,7 @@ describe('API Service', () => {
         ok: false,
       })
 
-      await expect(fetchUserById('999')).rejects.toThrow(
+      await expect(getUserById('999')).rejects.toThrow(
         'Error al cargar el usuario'
       )
     })
