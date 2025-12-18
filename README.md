@@ -30,8 +30,8 @@ Aplicación para buscar y visualizar usuarios utilizando Next.js 14, TypeScript,
 - Vitest
 - Testing Library
 
-## 🧪 Cobertura de Tests
+# Cobertura de Tests
 
 - Componentes de UI
-- Llamadas a la API (mockeadas)
+- Llamadas a la API
 - Navegación entre páginas
